@@ -5,6 +5,7 @@
  */
 package com.heig.amt.webapp.web;
 
+import com.heig.amt.webapp.services.UserManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,7 +30,7 @@ public class Private extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("user", request.getSession().getAttribute("user"));
+        request.setAttribute("user", UserManager.getInstance().getUser((String)request.getSession().getAttribute("user")));
         request.getRequestDispatcher("/WEB-INF/pages/private.jsp").forward(request, response);
     }
 }

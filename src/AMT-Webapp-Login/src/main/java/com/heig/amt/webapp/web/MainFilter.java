@@ -66,8 +66,21 @@ public class MainFilter implements Filter {
         RequestWrapper wrappedRequest = new RequestWrapper((HttpServletRequest) request);
         ResponseWrapper wrappedResponse = new ResponseWrapper((HttpServletResponse) response);
         
-        // Check resources
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
         
+        // Only allow access to Index if not logged in
+        if(httpRequest.getRequestURI().startsWith(httpRequest.getContextPath() + "/Index")){
+            if(httpRequest.getSession().getAttribute("user") != null){
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/Private");
+            }
+        }
+        // Only allow access to Private if logged in
+        else if(httpRequest.getRequestURI().startsWith(httpRequest.getContextPath() + "/Private")){
+            if(httpRequest.getSession().getAttribute("user") == null){
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/Index");
+            }
+        }
         
         
         Throwable problem = null;

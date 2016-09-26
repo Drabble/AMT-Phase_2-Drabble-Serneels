@@ -17,6 +17,13 @@
 		<script src="${pageContext.request.contextPath}/resources/js/script.js"></script>
 	</head>
 	<body>
-            <h1>Welcome ${requestScope.user.username}</h1>
+            <div class="container">
+               <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <h1>Welcome ${requestScope.user.username}</h1>
+                        Your password is ${requestScope.user.password}.
+                    </div>
+               </div>
+            </div>
 	</body>
 </html>

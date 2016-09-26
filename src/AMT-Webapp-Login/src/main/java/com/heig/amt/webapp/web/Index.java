@@ -32,11 +32,6 @@ public class Index extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
-        if(UserManager.getInstance().loginUser(request.getParameter("username"), request.getParameter("password"))){
-            
-        } else{
-            
-        }
     }
 }
     

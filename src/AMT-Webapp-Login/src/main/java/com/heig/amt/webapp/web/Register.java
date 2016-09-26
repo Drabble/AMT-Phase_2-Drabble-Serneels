@@ -31,9 +31,11 @@ public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(UserManager.getInstance().registerUser(request.getParameter("username"), request.getParameter("password"))){
-            
+            request.getSession().setAttribute("user", request.getParameter("username"));
+            response.sendRedirect(request.getContextPath() + "/Private");
         } else{
-            
+            request.setAttribute("error", "Wrong username/password");
+            request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
         }
     }
 }

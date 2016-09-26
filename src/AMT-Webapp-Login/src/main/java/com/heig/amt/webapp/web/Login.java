@@ -31,10 +31,12 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(UserManager.getInstance().loginUser(request., password)){
-            
+        if(UserManager.getInstance().loginUser(request.getParameter("username"), request.getParameter("password"))){
+            request.getSession().setAttribute("user", request.getParameter("username"));
+            response.sendRedirect(request.getContextPath() + "/Private");
         } else{
-            
+            request.setAttribute("error", "Username already exists");
+            request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
         }
     }
 

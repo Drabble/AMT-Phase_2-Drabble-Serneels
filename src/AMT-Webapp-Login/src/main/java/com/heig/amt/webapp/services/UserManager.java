@@ -55,4 +55,13 @@ public class UserManager {
         }
         return false;
     }
+
+    public User getUser(String username) {
+        for(User user : users){
+            if(user.getUsername().compareTo(username) == 0){
+                return user;
+            }
+        }
+        return null;
+    }
 }
