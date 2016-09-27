@@ -11,7 +11,8 @@ Assuming that you have installed **docker** and **docker-compose** on your machi
 
 ```
 cd topology-amt
-docker-compose up --build
+docker-compose build
+docker-compose up
 ```
 
 ## Access the webapp
