@@ -7,7 +7,6 @@ package com.heig.amt.webapp.web;
 
 import com.heig.amt.webapp.services.UserManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author antoi
  */
-public class Private extends HttpServlet {
+public class RegisterServlet extends HttpServlet {
 
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -28,9 +27,14 @@ public class Private extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("user", UserManager.getInstance().getUser((String)request.getSession().getAttribute("user")));
-        request.getRequestDispatcher("/WEB-INF/pages/private.jsp").forward(request, response);
+        if(UserManager.getInstance().registerUser(request.getParameter("username"), request.getParameter("password"))){
+            request.getSession().setAttribute("user", request.getParameter("username"));
+            response.sendRedirect(request.getContextPath() + "/Private");
+        } else{
+            request.setAttribute("registerError", "Username already exists");
+            request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
+        }
     }
 }

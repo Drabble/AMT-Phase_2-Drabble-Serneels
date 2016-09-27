@@ -7,7 +7,6 @@ package com.heig.amt.webapp.web;
 
 import com.heig.amt.webapp.services.UserManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author antoi
  */
-public class Register extends HttpServlet {
+public class PrivateServlet extends HttpServlet {
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -28,14 +27,9 @@ public class Register extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(UserManager.getInstance().registerUser(request.getParameter("username"), request.getParameter("password"))){
-            request.getSession().setAttribute("user", request.getParameter("username"));
-            response.sendRedirect(request.getContextPath() + "/Private");
-        } else{
-            request.setAttribute("error", "Wrong username/password");
-            request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
-        }
+        request.setAttribute("user", UserManager.getInstance().getUser((String)request.getSession().getAttribute("user")));
+        request.getRequestDispatcher("/WEB-INF/pages/private.jsp").forward(request, response);
     }
 }

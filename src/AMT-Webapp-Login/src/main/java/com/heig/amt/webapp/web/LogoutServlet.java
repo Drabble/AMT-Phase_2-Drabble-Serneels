@@ -5,9 +5,7 @@
  */
 package com.heig.amt.webapp.web;
 
-import com.heig.amt.webapp.services.UserManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author antoi
  */
-public class Index extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -31,7 +29,8 @@ public class Index extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
+        request.getSession().setAttribute("user", null);
+        response.sendRedirect(request.getContextPath() + "/Index");
     }
 }
     

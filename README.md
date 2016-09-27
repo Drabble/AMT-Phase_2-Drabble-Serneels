@@ -1,8 +1,8 @@
-# AMT-Phase_1-Drabble-Serneels
+# AMT-Phase_2-Drabble-Serneels
 
 ## Introduction
 
-This repo contains artifacts to illustrate the high-level Java EE development cycle:
+This repo contains a simple java EE app with login/register and permissions.
 
 
 ## Quick start

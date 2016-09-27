@@ -70,7 +70,15 @@ public class MainFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         
         // Only allow access to Index if not logged in
-        if(httpRequest.getRequestURI().startsWith(httpRequest.getContextPath() + "/Index")){
+        if(httpRequest.getRequestURI().compareTo(httpRequest.getContextPath() + "/") == 0){
+            if(httpRequest.getSession().getAttribute("user") != null){
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/Private");
+            }
+            else{
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/Index");
+            }
+        }
+        else if(httpRequest.getRequestURI().startsWith(httpRequest.getContextPath() + "/Index")){
             if(httpRequest.getSession().getAttribute("user") != null){
                 httpResponse.sendRedirect(httpRequest.getContextPath() + "/Private");
             }

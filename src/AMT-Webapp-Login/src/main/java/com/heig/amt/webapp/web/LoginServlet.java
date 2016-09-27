@@ -7,7 +7,6 @@ package com.heig.amt.webapp.web;
 
 import com.heig.amt.webapp.services.UserManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author antoi
  */
-public class Login extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
 
     /**
@@ -35,7 +34,7 @@ public class Login extends HttpServlet {
             request.getSession().setAttribute("user", request.getParameter("username"));
             response.sendRedirect(request.getContextPath() + "/Private");
         } else{
-            request.setAttribute("error", "Username already exists");
+            request.setAttribute("loginError", "Wrong username/password");
             request.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(request, response);
         }
     }

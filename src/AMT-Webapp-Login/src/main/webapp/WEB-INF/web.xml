@@ -10,19 +10,23 @@
     </filter-mapping>
     <servlet>
         <servlet-name>Index</servlet-name>
-        <servlet-class>com.heig.amt.webapp.web.Index</servlet-class>
+        <servlet-class>com.heig.amt.webapp.web.IndexServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Private</servlet-name>
-        <servlet-class>com.heig.amt.webapp.web.Private</servlet-class>
+        <servlet-class>com.heig.amt.webapp.web.PrivateServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>com.heig.amt.webapp.web.Login</servlet-class>
+        <servlet-class>com.heig.amt.webapp.web.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Register</servlet-name>
-        <servlet-class>com.heig.amt.webapp.web.Register</servlet-class>
+        <servlet-class>com.heig.amt.webapp.web.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.heig.amt.webapp.web.LogoutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
